@@ -1,0 +1,13 @@
+__pycache__/
+*.csv
+*.dat
+*.txt
+*.nc
+*.png
+*.pdf
+*.iml
+*/data/*
+*/doc/*
+.*
+!/.gitignore
+
