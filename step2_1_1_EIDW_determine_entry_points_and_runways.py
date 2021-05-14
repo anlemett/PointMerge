@@ -156,48 +156,48 @@ def create_entry_points_and_runways_files(month, week):
     entry_points_and_runways_df = pd.read_csv(full_input_filename2, sep=' ')
     entry_points_and_runways_df.set_index(['flight_id'], inplace=True)
                      
-    NIMAT_rwy10L_df = pd.DataFrame()
-    NIMAT_rwy28R_df = pd.DataFrame()
+    NIMAT_rwy10_df = pd.DataFrame()
+    NIMAT_rwy28_df = pd.DataFrame()
     NIMAT_rwy16_df = pd.DataFrame()
     NIMAT_rwy34_df = pd.DataFrame()
-    BOYNE_rwy10L_df = pd.DataFrame()
-    BOYNE_rwy28R_df = pd.DataFrame()
+    BOYNE_rwy10_df = pd.DataFrame()
+    BOYNE_rwy28_df = pd.DataFrame()
     BOYNE_rwy16_df = pd.DataFrame()
     BOYNE_rwy34_df = pd.DataFrame()
-    BAGSO_rwy10L_df = pd.DataFrame()
-    BAGSO_rwy28R_df = pd.DataFrame()
+    BAGSO_rwy10_df = pd.DataFrame()
+    BAGSO_rwy28_df = pd.DataFrame()
     BAGSO_rwy16_df = pd.DataFrame()
     BAGSO_rwy34_df = pd.DataFrame()
-    LIPGO_rwy10L_df = pd.DataFrame()
-    LIPGO_rwy28R_df = pd.DataFrame()
+    LIPGO_rwy10_df = pd.DataFrame()
+    LIPGO_rwy28_df = pd.DataFrame()
     LIPGO_rwy16_df = pd.DataFrame()
     LIPGO_rwy34_df = pd.DataFrame()
-    ABLIN_rwy10L_df = pd.DataFrame()
-    ABLIN_rwy28R_df = pd.DataFrame()
+    ABLIN_rwy10_df = pd.DataFrame()
+    ABLIN_rwy28_df = pd.DataFrame()
     ABLIN_rwy16_df = pd.DataFrame()
     ABLIN_rwy34_df = pd.DataFrame()
-    VATRY_rwy10L_df = pd.DataFrame()
-    VATRY_rwy28R_df = pd.DataFrame()
+    VATRY_rwy10_df = pd.DataFrame()
+    VATRY_rwy28_df = pd.DataFrame()
     VATRY_rwy16_df = pd.DataFrame()
     VATRY_rwy34_df = pd.DataFrame()
-    BAMLI_rwy10L_df = pd.DataFrame()
-    BAMLI_rwy28R_df = pd.DataFrame()
+    BAMLI_rwy10_df = pd.DataFrame()
+    BAMLI_rwy28_df = pd.DataFrame()
     BAMLI_rwy16_df = pd.DataFrame()
     BAMLI_rwy34_df = pd.DataFrame()
-    OLAPO_rwy10L_df = pd.DataFrame()
-    OLAPO_rwy28R_df = pd.DataFrame()
+    OLAPO_rwy10_df = pd.DataFrame()
+    OLAPO_rwy28_df = pd.DataFrame()
     OLAPO_rwy16_df = pd.DataFrame()
     OLAPO_rwy34_df = pd.DataFrame()
-    OSGAR_rwy10L_df = pd.DataFrame()
-    OSGAR_rwy28R_df = pd.DataFrame()
+    OSGAR_rwy10_df = pd.DataFrame()
+    OSGAR_rwy28_df = pd.DataFrame()
     OSGAR_rwy16_df = pd.DataFrame()
     OSGAR_rwy34_df = pd.DataFrame()
-    SUTEX_rwy10L_df = pd.DataFrame()
-    SUTEX_rwy28R_df = pd.DataFrame()
+    SUTEX_rwy10_df = pd.DataFrame()
+    SUTEX_rwy28_df = pd.DataFrame()
     SUTEX_rwy16_df = pd.DataFrame()
     SUTEX_rwy34_df = pd.DataFrame()
-    BUNED_rwy10L_df = pd.DataFrame()
-    BUNED_rwy28R_df = pd.DataFrame()
+    BUNED_rwy10_df = pd.DataFrame()
+    BUNED_rwy28_df = pd.DataFrame()
     BUNED_rwy16_df = pd.DataFrame()
     BUNED_rwy34_df = pd.DataFrame()
     
@@ -213,99 +213,99 @@ def create_entry_points_and_runways_files(month, week):
         # "NIMAT", "BOYNE", "BAGSO", "LIPGO", "ABLIN", "VATRY", "BAMLI", "OLAPO", "OSGAR", "SUTEX", "BUNED"
         if entry_point == "NIMAT":
             if runway == "10R":
-                NIMAT_rwy10L_df = NIMAT_rwy10L_df.append(flight_id_group)
+                NIMAT_rwy10_df = NIMAT_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                    NIMAT_rwy28R_df = NIMAT_rwy28R_df.append(flight_id_group)
+                    NIMAT_rwy28_df = NIMAT_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 NIMAT_rwy16_df = NIMAT_rwy16_df.append(flight_id_group)
             else:
                 NIMAT_rwy34_df = NIMAT_rwy34_df.append(flight_id_group)
         elif entry_point == "BOYNE":
             if runway == "10R":
-                BOYNE_rwy10L_df = BOYNE_rwy10L_df.append(flight_id_group)
+                BOYNE_rwy10_df = BOYNE_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                BOYNE_rwy28R_df = BOYNE_rwy28R_df.append(flight_id_group)
+                BOYNE_rwy28_df = BOYNE_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 BOYNE_rwy16_df = BOYNE_rwy16_df.append(flight_id_group)
             else:
                 BOYNE_rwy34_df = BOYNE_rwy34_df.append(flight_id_group)
         elif entry_point == "BAGSO":
             if runway == "10R":
-                BAGSO_rwy10L_df = BAGSO_rwy10L_df.append(flight_id_group)
+                BAGSO_rwy10_df = BAGSO_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                BAGSO_rwy28R_df = BAGSO_rwy28R_df.append(flight_id_group)
+                BAGSO_rwy28_df = BAGSO_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 BAGSO_rwy16_df = BAGSO_rwy16_df.append(flight_id_group)
             else:
                 BAGSO_rwy34_df = BAGSO_rwy34_df.append(flight_id_group)
         elif entry_point == "LIPGO":
             if runway == "10R":
-                LIPGO_rwy10L_df = LIPGO_rwy10L_df.append(flight_id_group)
+                LIPGO_rwy10_df = LIPGO_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                LIPGO_rwy28R_df = LIPGO_rwy28R_df.append(flight_id_group)
+                LIPGO_rwy28_df = LIPGO_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 LIPGO_rwy16_df = LIPGO_rwy16_df.append(flight_id_group)
             else:
                 LIPGO_rwy34_df = LIPGO_rwy34_df.append(flight_id_group)
         elif entry_point == "ABLIN":
             if runway == "10R":
-                ABLIN_rwy10L_df = ABLIN_rwy10L_df.append(flight_id_group)
+                ABLIN_rwy10_df = ABLIN_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                ABLIN_rwy28R_df = ABLIN_rwy28R_df.append(flight_id_group)
+                ABLIN_rwy28_df = ABLIN_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 ABLIN_rwy16_df = ABLIN_rwy16_df.append(flight_id_group)
             else:
                 ABLIN_rwy34_df = ABLIN_rwy34_df.append(flight_id_group)
         elif entry_point == "VATRY":
             if runway == "10R":
-                VATRY_rwy10L_df = VATRY_rwy10L_df.append(flight_id_group)
+                VATRY_rwy10_df = VATRY_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                VATRY_rwy28R_df = VATRY_rwy28R_df.append(flight_id_group)
+                VATRY_rwy28_df = VATRY_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 VATRY_rwy16_df = VATRY_rwy16_df.append(flight_id_group)
             else:
                 VATRY_rwy34_df = VATRY_rwy34_df.append(flight_id_group)
         elif entry_point == "BAMLI":
             if runway == "10R":
-                BAMLI_rwy10L_df = BAMLI_rwy10L_df.append(flight_id_group)
+                BAMLI_rwy10_df = BAMLI_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                BAMLI_rwy28R_df = BAMLI_rwy28R_df.append(flight_id_group)
+                BAMLI_rwy28_df = BAMLI_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 BAMLI_rwy16_df = BAMLI_rwy16_df.append(flight_id_group)
             else:
                 BAMLI_rwy34_df = BAMLI_rwy34_df.append(flight_id_group)
         elif entry_point == "OLAPO":
             if runway == "10R":
-                OLAPO_rwy10L_df = OLAPO_rwy10L_df.append(flight_id_group)
+                OLAPO_rwy10_df = OLAPO_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                OLAPO_rwy28R_df = OLAPO_rwy28R_df.append(flight_id_group)
+                OLAPO_rwy28_df = OLAPO_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 OLAPO_rwy16_df = OLAPO_rwy16_df.append(flight_id_group)
             else:
                 OLAPO_rwy34_df = OLAPO_rwy34_df.append(flight_id_group)
         elif entry_point == "OSGAR":
             if runway == "10R":
-                OSGAR_rwy10L_df = OSGAR_rwy10L_df.append(flight_id_group)
+                OSGAR_rwy10_df = OSGAR_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                OSGAR_rwy28R_df = OSGAR_rwy28R_df.append(flight_id_group)
+                OSGAR_rwy28_df = OSGAR_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 OSGAR_rwy16_df = OSGAR_rwy16_df.append(flight_id_group)
             else:
                 OSGAR_rwy34_df = OSGAR_rwy34_df.append(flight_id_group)
         elif entry_point == "SUTEX":
             if runway == "10R":
-                SUTEX_rwy10L_df = SUTEX_rwy10L_df.append(flight_id_group)
+                SUTEX_rwy10_df = SUTEX_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                SUTEX_rwy28R_df = SUTEX_rwy28R_df.append(flight_id_group)
+                SUTEX_rwy28_df = SUTEX_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 SUTEX_rwy16_df = SUTEX_rwy16_df.append(flight_id_group)
             else:
                 SUTEX_rwy34_df = SUTEX_rwy34_df.append(flight_id_group)
         elif entry_point == "BUNED":
             if runway == "10R":
-                BUNED_rwy10L_df = BUNED_rwy10L_df.append(flight_id_group)
+                BUNED_rwy10_df = BUNED_rwy10_df.append(flight_id_group)
             elif runway == "28L":
-                BUNED_rwy28R_df = BUNED_rwy28R_df.append(flight_id_group)
+                BUNED_rwy28_df = BUNED_rwy28_df.append(flight_id_group)
             elif runway == "16":
                 BUNED_rwy16_df = BUNED_rwy16_df.append(flight_id_group)
             else:
@@ -318,45 +318,45 @@ def create_entry_points_and_runways_files(month, week):
     output_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week" + str(week)
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
 
-    NIMAT_rwy10L_df.to_csv(full_output_filename + "_NIMAT_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    NIMAT_rwy28R_df.to_csv(full_output_filename + "_NIMAT_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    NIMAT_rwy10_df.to_csv(full_output_filename + "_NIMAT_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    NIMAT_rwy28_df.to_csv(full_output_filename + "_NIMAT_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     NIMAT_rwy16_df.to_csv(full_output_filename + "_NIMAT_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     NIMAT_rwy34_df.to_csv(full_output_filename + "_NIMAT_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BOYNE_rwy10L_df.to_csv(full_output_filename + "_BOYNE_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BOYNE_rwy28R_df.to_csv(full_output_filename + "_BOYNE_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BOYNE_rwy10_df.to_csv(full_output_filename + "_BOYNE_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BOYNE_rwy28_df.to_csv(full_output_filename + "_BOYNE_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     BOYNE_rwy34_df.to_csv(full_output_filename + "_BOYNE_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BAGSO_rwy10L_df.to_csv(full_output_filename + "_BAGSO_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BAGSO_rwy28R_df.to_csv(full_output_filename + "_BAGSO_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BAGSO_rwy10_df.to_csv(full_output_filename + "_BAGSO_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BAGSO_rwy28_df.to_csv(full_output_filename + "_BAGSO_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     BAGSO_rwy16_df.to_csv(full_output_filename + "_BAGSO_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     BAGSO_rwy34_df.to_csv(full_output_filename + "_BAGSO_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    LIPGO_rwy10L_df.to_csv(full_output_filename + "_LIPGO_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    LIPGO_rwy28R_df.to_csv(full_output_filename + "_LIPGO_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    LIPGO_rwy10_df.to_csv(full_output_filename + "_LIPGO_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    LIPGO_rwy28_df.to_csv(full_output_filename + "_LIPGO_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     LIPGO_rwy16_df.to_csv(full_output_filename + "_LIPGO_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     LIPGO_rwy34_df.to_csv(full_output_filename + "_LIPGO_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    ABLIN_rwy10L_df.to_csv(full_output_filename + "_ABLIN_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    ABLIN_rwy28R_df.to_csv(full_output_filename + "_ABLIN_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    ABLIN_rwy10_df.to_csv(full_output_filename + "_ABLIN_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    ABLIN_rwy28_df.to_csv(full_output_filename + "_ABLIN_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     ABLIN_rwy16_df.to_csv(full_output_filename + "_ABLIN_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     ABLIN_rwy34_df.to_csv(full_output_filename + "_ABLIN_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    VATRY_rwy10L_df.to_csv(full_output_filename + "_VATRY_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    VATRY_rwy28R_df.to_csv(full_output_filename + "_VATRY_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    VATRY_rwy10_df.to_csv(full_output_filename + "_VATRY_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    VATRY_rwy28_df.to_csv(full_output_filename + "_VATRY_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     VATRY_rwy16_df.to_csv(full_output_filename + "_VATRY_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     VATRY_rwy34_df.to_csv(full_output_filename + "_VATRY_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BAMLI_rwy10L_df.to_csv(full_output_filename + "_BAMLI_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BAMLI_rwy28R_df.to_csv(full_output_filename + "_BAMLI_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    OLAPO_rwy10L_df.to_csv(full_output_filename + "_OLAPO_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    OLAPO_rwy28R_df.to_csv(full_output_filename + "_OLAPO_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BAMLI_rwy10_df.to_csv(full_output_filename + "_BAMLI_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BAMLI_rwy28_df.to_csv(full_output_filename + "_BAMLI_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    OLAPO_rwy10_df.to_csv(full_output_filename + "_OLAPO_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    OLAPO_rwy28_df.to_csv(full_output_filename + "_OLAPO_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     OLAPO_rwy16_df.to_csv(full_output_filename + "_OLAPO_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     OLAPO_rwy34_df.to_csv(full_output_filename + "_OLAPO_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    OSGAR_rwy10L_df.to_csv(full_output_filename + "_OSGAR_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    OSGAR_rwy28R_df.to_csv(full_output_filename + "_OSGAR_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    OSGAR_rwy10_df.to_csv(full_output_filename + "_OSGAR_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    OSGAR_rwy28_df.to_csv(full_output_filename + "_OSGAR_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     OSGAR_rwy16_df.to_csv(full_output_filename + "_OSGAR_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     OSGAR_rwy34_df.to_csv(full_output_filename + "_OSGAR_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    SUTEX_rwy10L_df.to_csv(full_output_filename + "_SUTEX_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    SUTEX_rwy28R_df.to_csv(full_output_filename + "_SUTEX_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    SUTEX_rwy10_df.to_csv(full_output_filename + "_SUTEX_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    SUTEX_rwy28_df.to_csv(full_output_filename + "_SUTEX_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     SUTEX_rwy16_df.to_csv(full_output_filename + "_SUTEX_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     SUTEX_rwy34_df.to_csv(full_output_filename + "_SUTEX_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BUNED_rwy10L_df.to_csv(full_output_filename + "_BUNED_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    BUNED_rwy28R_df.to_csv(full_output_filename + "_BUNED_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BUNED_rwy10_df.to_csv(full_output_filename + "_BUNED_rwy10.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    BUNED_rwy28_df.to_csv(full_output_filename + "_BUNED_rwy28.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     BUNED_rwy16_df.to_csv(full_output_filename + "_BUNED_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     BUNED_rwy34_df.to_csv(full_output_filename + "_BUNED_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
 
