@@ -2,8 +2,8 @@
 
 #airport_icao = "ESSA"
 #airport_icao = "ESGG"
-#airport_icao = "EIDW" # Dublin
-airport_icao = "LOWW" # Vienna
+airport_icao = "EIDW" # Dublin
+#airport_icao = "LOWW" # Vienna
 
 year = '2019'
 
@@ -20,9 +20,6 @@ DATA_DIR = os.path.join(DATA_DIR, year)
 INPUT_DIR = os.path.join(DATA_DIR, "osn_" + airport_icao + "_states_TMA_" + year)
 OUTPUT_DIR = os.path.join(DATA_DIR, "osn_" + airport_icao + "_states_TMA_after_filtering_" + year)
 
-if not os.path.exists(INPUT_DIR):
-    os.makedirs(INPUT_DIR)
-    
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
 
@@ -53,15 +50,14 @@ start_time = time.time()
 for month in months:
     print(month)
     
-    #number_of_weeks = (5, 4)[month == '02' and not calendar.isleap(int(year))]
-    number_of_weeks = 1
+    number_of_weeks = (5, 4)[month == '02' and not calendar.isleap(int(year))]
+    #number_of_weeks = 1
         
     for week in range(0, number_of_weeks):
         
         print(airport_icao, year, month, week+1)
         
-        #filename = 'osn_' + airport_icao + '_states_TMA_' + year + '_' + month + '_week' + str(week + 1) + '.csv'
-        filename = 'osn_' + airport_icao + '_states_TMA_' + year + '_' + month + '_week' + str(week + 1) + '_old.csv'
+        filename = 'osn_' + airport_icao + '_states_TMA_' + year + '_' + month + '_week' + str(week + 1) + '.csv'
         
         full_filename = os.path.join(INPUT_DIR, filename)
         
@@ -154,6 +150,36 @@ for month in months:
                     if not polygon.contains(point):
                         remove = 1
                         break
+                        
+            if remove == 1:
+                df = df.drop(flight_id)
+                continue
+
+            ###################################################################
+            # Fluctuation in latitude or longitude
+            ###################################################################
+            lat_lon_fluctuation_threshold = 0.1
+            
+            if not flight_states_df.empty:
+                lats = flight_id_group['lat']
+                prev_lat = lats.tolist()[0]
+                
+                lons = flight_id_group['lon']
+                prev_lon = lons.tolist()[0]
+            
+                for seq, row in flight_states_df.iterrows():
+                    
+                    if seq == 0:
+                        continue
+                    
+                    if abs(abs(row["lat"])-abs(prev_lat)) > lat_lon_fluctuation_threshold:
+                        remove = 1
+                        break
+                    if abs(abs(row["lon"])-abs(prev_lon)) > lat_lon_fluctuation_threshold:
+                        remove = 1
+                        break
+                    prev_lat = row["lat"]
+                    prev_lon = row["lon"]
                         
             if remove == 1:
                 df = df.drop(flight_id)

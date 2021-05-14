@@ -145,7 +145,7 @@ def calculate_horizontal_PIs(month):
         
         # Calculate reference distance based on entry point and runway
         distance_ref = 0
-#TODO: change distance_ref to to runway
+
         if entry_point == "NIMAT":
             if runway == "10R":
                 #distance_ref = 67.0
