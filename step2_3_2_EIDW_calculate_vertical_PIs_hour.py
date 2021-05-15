@@ -24,8 +24,8 @@ DATA_DIR = os.path.join(DATA_DIR, "PIs")
 #input_filename = "PIs_vertical_by_flight_" + year + "_10_week1.csv"
 #output_filename = "PIs_vertical_by_hour_" + year + "_10_week1.csv"
 
-input_filename = "PIs_vertical_by_flight_2019_10_week1_rwy28R.csv"
-output_filename = "PIs_vertical_by_hour_2019_10_week1_rwy28R.csv"
+input_filename = "PIs_vertical_by_flight_2019_10_week4_rwy28.csv"
+output_filename = "PIs_vertical_by_hour_2019_10_week4_rwy28.csv"
 
 
 #flight_id date hour number_of_levels time_on_levels time_on_levels_percent distance_on_levels distance_on_levels_percent

@@ -48,7 +48,7 @@ def determine_entry_points_and_runways(month, week):
     DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "PIs")
     if not os.path.exists(DATA_OUTPUT_DIR):
         os.makedirs(DATA_OUTPUT_DIR)
-    output_filename = "entry_points_and_runways" + year + '_' +  month + "_week" + str(week) + ".csv"
+    output_filename = "entry_points_and_runways_" + year + '_' +  month + "_week" + str(week) + ".csv"
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
 
     states_df = get_all_states(full_input_filename)
@@ -150,7 +150,7 @@ def create_entry_points_and_runways_files(month, week):
     number_of_flights = len(states_df.groupby(level='flightId'))
     
     DATA_INPUT_DIR2 = os.path.join(DATA_DIR, "PIs")
-    input_filename2 = "entry_points_and_runways" + year + '_' +  month + "_week" + str(week) + ".csv"
+    input_filename2 = "entry_points_and_runways_" + year + '_' +  month + "_week" + str(week) + ".csv"
     full_input_filename2 = os.path.join(DATA_INPUT_DIR2, input_filename2)
     
     entry_points_and_runways_df = pd.read_csv(full_input_filename2, sep=' ')
@@ -372,7 +372,7 @@ def create_runways_files(month, week):
     number_of_flights = len(states_df.groupby(level='flightId'))
     
     DATA_INPUT_DIR2 = os.path.join(DATA_DIR, "PIs")
-    input_filename2 = "entry_points_and_runways" + year + '_' +  month + "_week" + str(week) + ".csv"
+    input_filename2 = "entry_points_and_runways_" + year + '_' +  month + "_week" + str(week) + ".csv"
     full_input_filename2 = os.path.join(DATA_INPUT_DIR2, input_filename2)
     
     entry_points_and_runways_df = pd.read_csv(full_input_filename2, sep=' ')

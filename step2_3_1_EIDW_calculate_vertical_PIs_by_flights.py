@@ -37,18 +37,15 @@ def get_all_states(csv_input_file):
     return df
 
 
-def calculate_vfe(month):
+def calculate_vfe(month, week):
     
-    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
-    #input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + ".csv"
-    #input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week1.csv"
-    input_filename = "osn_EIDW_states_TMA_2019_10_week2_rwy28.csv"
+    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_INPUT_DIR = os.path.join(DATA_INPUT_DIR, "osn_EIDW_states_TMA_2019_10_week" + str(week) + "_by_runways")
+    input_filename = "osn_EIDW_states_TMA_2019_10_week" + str(week) + "_rwy28.csv"
     full_input_filename = os.path.join(DATA_INPUT_DIR, input_filename)
          
     DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "PIs")
-    #output_filename = "PIs_vertical_by_flight_" + year + '_' +  month + ".csv"
-    #output_filename = "PIs_vertical_by_flight_" + year + '_' +  month + "_week1.csv"
-    output_filename = "PIs_vertical_by_flight_2019_10_week2_rwy28.csv"
+    output_filename = "PIs_vertical_by_flight_2019_10_week" + str(week) + "_rwy28.csv"
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
 
     #number_of_flights = len(states_df.groupby(level='flightId'))
@@ -90,7 +87,7 @@ def calculate_vfe(month):
         #    continue
         
         count = count + 1
-        print(year, month, flight_id_num, count, flight_id)
+        print(year, month, week, flight_id_num, count, flight_id)
 
         number_of_levels = 0
 
@@ -247,7 +244,9 @@ def calculate_vfe(month):
 def main():
     
     for month in months:
-        calculate_vfe(month)
+        calculate_vfe(month, 2)
+        calculate_vfe(month, 3)
+        calculate_vfe(month, 4)
     
     
 main()    
