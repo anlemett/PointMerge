@@ -28,18 +28,12 @@ def get_all_states(csv_input_file):
     
     df.set_index(['flightId', 'sequence'], inplace=True)
     
-    #df.to_csv('temp1.csv', sep=' ', encoding='utf-8', float_format='%.3f', header=False, index=True)
-    
-    #df = df[~df.index.duplicated(keep='first')]
-    
-    #df.to_csv('temp2.csv', sep=' ', encoding='utf-8', float_format='%.3f', header=False, index=True)
-
     return df
 
 
 def calculate_vfe(month, week):
     
-    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     DATA_INPUT_DIR = os.path.join(DATA_INPUT_DIR, "osn_EIDW_states_TMA_2019_10_week" + str(week) + "_by_runways")
     input_filename = "osn_EIDW_states_TMA_2019_10_week" + str(week) + "_rwy28.csv"
     full_input_filename = os.path.join(DATA_INPUT_DIR, input_filename)
@@ -244,6 +238,7 @@ def calculate_vfe(month, week):
 def main():
     
     for month in months:
+        calculate_vfe(month, 1)
         calculate_vfe(month, 2)
         calculate_vfe(month, 3)
         calculate_vfe(month, 4)

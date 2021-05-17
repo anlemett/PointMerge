@@ -41,7 +41,7 @@ def get_all_states(csv_input_file):
 
 def determine_entry_points_and_runways(month, week):
     
-    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week" + str(week) + ".csv"
     full_input_filename = os.path.join(DATA_INPUT_DIR, input_filename)
          
@@ -141,7 +141,7 @@ def determine_entry_points_and_runways(month, week):
 
 def create_entry_points_and_runways_files(month, week):
     
-    DATA_INPUT_DIR1 = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_INPUT_DIR1 = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     input_filename1 = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week" + str(week) + ".csv"
     full_input_filename1 = os.path.join(DATA_INPUT_DIR1, input_filename1)
     
@@ -311,7 +311,7 @@ def create_entry_points_and_runways_files(month, week):
             else:
                 BUNED_rwy34_df = BUNED_rwy34_df.append(flight_id_group)
 
-    DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     DATA_OUTPUT_DIR = os.path.join(DATA_OUTPUT_DIR, "osn_"+ airport_icao + "_states_TMA_" + year + "_" + month + "_week" + str(week) + "_by_entry_points_and_runways")
     if not os.path.exists(DATA_OUTPUT_DIR):
         os.makedirs(DATA_OUTPUT_DIR)
@@ -363,7 +363,7 @@ def create_entry_points_and_runways_files(month, week):
 
 def create_runways_files(month, week):
     
-    DATA_INPUT_DIR1 = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_INPUT_DIR1 = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     input_filename1 = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week" + str(week) + ".csv"
     full_input_filename1 = os.path.join(DATA_INPUT_DIR1, input_filename1)
     
@@ -400,7 +400,7 @@ def create_runways_files(month, week):
         else:
             rwy34_df = rwy34_df.append(flight_id_group)
 
-    DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_after_filtering_" + year)
+    DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     DATA_OUTPUT_DIR = os.path.join(DATA_OUTPUT_DIR, "osn_"+ airport_icao + "_states_TMA_" + year + "_" + month + "_week" + str(week) + "_by_runways")
     if not os.path.exists(DATA_OUTPUT_DIR):
         os.makedirs(DATA_OUTPUT_DIR)
@@ -422,7 +422,7 @@ def main():
         for week in range(0, number_of_weeks):
         #for week in range(1, number_of_weeks):
         
-            #determine_entry_points_and_runways(month, week+1)
+            determine_entry_points_and_runways(month, week+1)
             
             create_entry_points_and_runways_files(month, week+1)
             
