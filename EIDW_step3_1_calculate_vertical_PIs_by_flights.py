@@ -55,9 +55,7 @@ def calculate_vfe(month, week):
     descent_end_altitude = 1800 / 3.281
     #print(descent_end_altitude)
     
-    states_df = states_df[states_df['altitude']>descent_end_altitude]
-
-    vfe_df = pd.DataFrame(columns=['flight_id', 'date', 'hour', 'number_of_levels',
+    vfe_df = pd.DataFrame(columns=['flight_id', 'date', 'begin_hour', 'end_hour', 'number_of_levels',
                                    'time_on_levels', 'time_on_levels_percent',
                                    'TMA_time',
                                    'distance_on_levels', 'distance_on_levels_percent',
@@ -217,13 +215,20 @@ def calculate_vfe(month, week):
                                 'cdo_altitude': cdo_altitude}, ignore_index=True)'''
 
         date_str = states_df.loc[flight_id].head(1)['endDate'].values[0]
+        
+        begin_timestamp = states_df.loc[flight_id]['timestamp'].values[0]
+        begin_datetime = datetime.utcfromtimestamp(begin_timestamp)
+        begin_hour_str = begin_datetime.strftime('%H')
+
         end_timestamp = states_df.loc[flight_id]['timestamp'].values[-1]
         end_datetime = datetime.utcfromtimestamp(end_timestamp)
         end_hour_str = end_datetime.strftime('%H')
         
         TMA_time = len(flight_id_group)/60  #seconds to minutes
         
-        vfe_df = vfe_df.append({'flight_id': flight_id, 'date': date_str, 'hour': end_hour_str,
+        vfe_df = vfe_df.append({'flight_id': flight_id, 'date': date_str,
+                                'begin_hour': begin_hour_str,
+                                'end_hour': end_hour_str,
                                 'number_of_levels': '0',
                                 'distance_on_levels': '0',
                                 'distance_on_levels_percent': '0',
