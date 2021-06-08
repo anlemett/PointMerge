@@ -46,14 +46,17 @@ def get_all_states(csv_input_file):
 
 def calculate_horizontal_PIs(month):
     
-    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
+    #DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
     #input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + ".csv"
-    input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week1.csv"
+    #input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + month + "_week1.csv"
+    DATA_INPUT_DIR = os.path.join(DATA_DIR, "Dataset")
+    input_filename = "dataset.csv"
     full_input_filename = os.path.join(DATA_INPUT_DIR, input_filename)
          
     DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "PIs")
     #output_filename = "PIs_horizontal_by_flight_" + year + '_' +  month + ".csv"
-    output_filename = "PIs_horizontal_by_flight_" + year + '_' +  month + "_week1.csv"
+    #output_filename = "PIs_horizontal_by_flight_" + year + '_' +  month + "_week1.csv"
+    output_filename = "PIs_horizontal_by_flight_dataset.csv"
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
 
     states_df = get_all_states(full_input_filename)
@@ -317,7 +320,6 @@ def calculate_horizontal_PIs(month):
             distance_sum = distance_sum + geodesic(previous_point, current_point).meters
             previous_point = current_point
             #print(distance_sum, current_point)
-
 
         distance_str = "{0:.3f}".format(distance_sum)
         
