@@ -123,11 +123,11 @@ def determine_entry_points_and_runways(month, week):
                                                     trajectory_point_last[1])
 
         # ~ -3.15 176.85 -54.07 125.93
-        if (trajectory_azimuth > -24) and (trajectory_azimuth < 61):
+        if (trajectory_azimuth > -24) and (trajectory_azimuth <= 61):
             runway = '10R'
-        elif (trajectory_azimuth > -136) and (trajectory_azimuth < -24):
+        elif (trajectory_azimuth > -136) and (trajectory_azimuth <= -24):
             runway = '16'
-        elif (trajectory_azimuth > 61) and (trajectory_azimuth < 152):
+        elif (trajectory_azimuth > 61) and (trajectory_azimuth <= 152):
             runway = '34'
         else: # 28L
             runway = '28L'

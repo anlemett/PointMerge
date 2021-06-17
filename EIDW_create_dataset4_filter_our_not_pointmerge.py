@@ -43,13 +43,12 @@ def dms2dd(as_string):
     return lat_dd, lon_dd
 
 SIVNA_lat, SIVNA_lon = dms2dd("531152.3N 0053827.7W")
-KERAV_lat, KERAV_lon = dms2dd("533742.7N 0054557.3E")
-
 SIVNA_square_lon = [SIVNA_lon - 0.05, SIVNA_lon - 0.05, SIVNA_lon + 0.05, SIVNA_lon + 0.05]
 SIVNA_square_lat = [SIVNA_lat - 0.05, SIVNA_lat + 0.05, SIVNA_lat + 0.05, SIVNA_lat - 0.05]
 
-KERAV_square_lon = [KERAV_lon - 0.05, KERAV_lon - 0.05, KERAV_lon + 0.05, KERAV_lon + 0.05]
-KERAV_square_lat = [KERAV_lat - 0.05, KERAV_lat + 0.05, KERAV_lat + 0.05, KERAV_lat - 0.05]
+KOGAX_lat, KOGAX_lon = dms2dd("533418.6N 0053814.1E")
+KOGAX_square_lon = [KOGAX_lon - 0.05, KOGAX_lon - 0.05, KOGAX_lon + 0.05, KOGAX_lon + 0.05]
+KOGAX_square_lat = [KOGAX_lat - 0.05, KOGAX_lat + 0.05, KOGAX_lat + 0.05, KOGAX_lat - 0.05]
 
 def check_SIVNA_square_contains_point(point):
 
@@ -58,9 +57,9 @@ def check_SIVNA_square_contains_point(point):
 
     return polygon.contains(point)
 
-def check_KERAV_square_contains_point(point):
+def check_KOGAX_square_contains_point(point):
 
-    lons_lats_vect = np.column_stack((KERAV_square_lon, KERAV_square_lat)) # Reshape coordinates
+    lons_lats_vect = np.column_stack((KOGAX_square_lon, KOGAX_square_lat)) # Reshape coordinates
     polygon = Polygon(lons_lats_vect) # create polygon
 
     return polygon.contains(point)
@@ -79,7 +78,7 @@ for flight_id, flight_df in states_df.groupby(level='flightId'):
         if (check_SIVNA_square_contains_point(Point(lon, lat))):
             drop = False
             break
-        if (check_KERAV_square_contains_point(Point(lon, lat))):
+        if (check_KOGAX_square_contains_point(Point(lon, lat))):
             drop = False
             break       
     if drop:  
