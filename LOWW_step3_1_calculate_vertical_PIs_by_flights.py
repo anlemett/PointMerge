@@ -7,7 +7,9 @@ import time
 start_time = time.time()
 
 year = '2019'
-airport_icao = "ESSA"
+airport_icao = "LOWW"
+
+from constants_LOWW import *
 
 DATA_DIR = os.path.join("data", airport_icao)
 DATA_DIR = os.path.join(DATA_DIR, year)
@@ -30,16 +32,16 @@ def calculate_vfe(month, week):
     
     #DATA_INPUT_DIR = os.path.join(DATA_DIR, "Dataset")
     #input_filename = "dataset.csv"
-    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_ESSA_states_TMA_2019")
-    DATA_INPUT_DIR = os.path.join(DATA_INPUT_DIR, "osn_ESSA_states_TMA_2019_10_week" + str(week) + "_by_runways")
+    DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_LOWW_states_TMA_2019")
+    DATA_INPUT_DIR = os.path.join(DATA_INPUT_DIR, "osn_LOWW_states_TMA_2019_10_week" + str(week) + "_by_runways")
 
     #input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + str(month) + "_week" + str(week) + ".csv"
-    input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + str(month) + "_week" + str(week) + "_rwy01R.csv"
+    input_filename = "osn_"+ airport_icao + "_states_TMA_" + year + '_' + str(month) + "_week" + str(week) + "_rwy_16.csv"
     full_input_filename = os.path.join(DATA_INPUT_DIR, input_filename)
          
     DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "PIs")
     #output_filename = "PIs_vertical_by_flight_dataset.csv"
-    output_filename = "PIs_vertical_by_flight_" + year + '_' +  str(month) + "_week" + str(week)+ "_rwy01R.csv"
+    output_filename = "PIs_vertical_by_flight_" + year + '_' +  str(month) + "_week" + str(week)+ "_rwy_16.csv"
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
     
        
