@@ -126,3 +126,4 @@ for flight_id, flight_id_group in rwy28_df.groupby(level='flight_id'):
 filename = "EIDW_dataset_TT.csv"
 dataset_df.to_csv(os.path.join(DATA_OUTPUT_DIR, filename), sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     
+print("--- %s minutes ---" % ((time.time() - start_time)/60))

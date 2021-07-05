@@ -14,8 +14,6 @@ from constants_LOWW import *
 #months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '12', '12']
 months = ['10']
 
-week = 4
-
 DATA_DIR = os.path.join("data", airport_icao)
 DATA_DIR = os.path.join(DATA_DIR, year)
 DATASET_DATA_DIR = os.path.join(DATA_DIR, "Dataset")
