@@ -7,12 +7,12 @@ import time
 start_time = time.time()
 
 year = '2019'
-#airport_icao = "EIDW"
+airport_icao = "EIDW"
 #airport_icao = "ESSA"
-airport_icao = "LOWW"
+#airport_icao = "LOWW"
 
-#input_filename = airport_icao + "_dataset_PM"
-input_filename = airport_icao + "_dataset_TT"
+input_filename = airport_icao + "_dataset_PM"
+#input_filename = airport_icao + "_dataset_TT"
 
 output_filename = input_filename + "_TMA_borders_points.csv"
 

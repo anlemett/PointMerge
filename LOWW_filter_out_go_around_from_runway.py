@@ -24,7 +24,7 @@ def filter_out():
 
 
     #filename = "osn_"+ airport_icao + "_states_TMA_" + year + "_" + month + "_week" + str(week) + "_rwy28"
-    filename = "LOWW_dataset_TT.csv"
+    filename = "LOWW_dataset_TT1.csv"
 
     states_df = pd.read_csv(os.path.join(DATA_INPUT_DIR, filename), sep=' ',
                     names = ['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'endDate'],
