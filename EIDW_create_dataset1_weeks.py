@@ -31,7 +31,7 @@ def create_dataset(month, week):
     states_df.set_index(['flightId', 'sequence'], inplace=True)
     
     input_filename2 = "week" + str(week)+ "_flight_ids.txt"
-    flight_ids_list = open(input_filename2,'r').read().split('\n')
+    flight_ids_list = open(os.path.join(DATA_OUTPUT_DIR, input_filename2),'r').read().split('\n')
     #print(flight_ids_list)
     
     #dataset_df = pd.DataFrame(columns=['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'endDate'])

@@ -87,7 +87,7 @@ vertical_PIs_by_flight_rwy28_df = pd.concat(frames)
 
 
 
-# remove outliers
+# drop percentile
 df = vertical_PIs_by_hour_week_rwy28_df
 #p1 = df["TMA_time_mean"].quantile(0.5) # 13 min, 4966 flights
 #p1 = df["TMA_time_mean"].quantile(0.6) # 13.8 min, 4046 flights
@@ -100,6 +100,8 @@ p1 = df["TMA_time_mean"].quantile(0.7) #  15.4 min, 2593 flights
 df = df.loc[(df['TMA_time_mean'] > p1)]
 #df = df.loc[(df['TMA_time_mean'] > 15)]
 print(p1)
+
+# extract the flights for given hours
 
 df = df.rename(columns = {'hour': 'end_hour'}, inplace = False)
 

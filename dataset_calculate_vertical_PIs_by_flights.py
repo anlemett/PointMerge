@@ -7,7 +7,7 @@ import time
 start_time = time.time()
 
 year = '2019'
-airport_icao = "EIDW"
+airport_icao = "ESSA"
 
 if airport_icao == "EIDW":
     from constants_EIDW import *
@@ -36,8 +36,8 @@ def get_all_states(csv_input_file):
 def calculate_vfe():
     
     DATA_INPUT_DIR = os.path.join(DATA_DIR, "Dataset")
-    dataset_name = airport_icao + "_dataset_PM"
-    #dataset_name = airport_icao + "_dataset_TT"
+    #dataset_name = airport_icao + "_dataset_PM"
+    dataset_name = airport_icao + "_dataset_TT"
     input_filename = dataset_name + ".csv"
 
     full_input_filename = os.path.join(DATA_INPUT_DIR, input_filename)
@@ -175,6 +175,7 @@ def calculate_vfe():
         distance_on_levels = distance_on_levels * 0.000539957   #meters to NM
         distance_sum = distance_sum * 0.000539957   #meters to NM
         time_on_levels = time_on_levels / 60    #seconds to minutes
+        time_sum = time_sum / 60                #seconds to minutes
 
         distance_on_levels_lst.append(distance_on_levels)
         distance_on_levels_str = "{0:.3f}".format(distance_on_levels)

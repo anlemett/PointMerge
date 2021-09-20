@@ -3,9 +3,11 @@ import os
 import matplotlib.pyplot as plt
 
 year = '2019'
-airport_icao = "EIDW"
+airport_icao = "ESSA"
 #PIs_type = "vertical"
+#PI_y_label = "Time on levels [min]"
 PIs_type = "horizontal"
+PI_y_label = "Additional distance [m]"
 
 if airport_icao == "EIDW":
     number_of_clusters = 10
@@ -30,9 +32,11 @@ for i in range(0, number_of_clusters):
     if PIs_type == "vertical":
         PIs_by_cluster_dict[i+1] = PIs_by_clusters_df['time_on_levels_percent']
     else: # horizontal
-        PIs_by_cluster_dict[i+1] = PIs_by_clusters_df['TMA_additional_distance_percent']
+        #PIs_by_cluster_dict[i+1] = PIs_by_clusters_df['TMA_additional_distance_percent']
+        PIs_by_cluster_dict[i+1] = PIs_by_clusters_df['TMA_additional_distance']
 
 fig, ax = plt.subplots(1, 1,figsize=(8,4))
 ax.boxplot(PIs_by_cluster_dict.values())
 ax.set_xticklabels(PIs_by_cluster_dict.keys())
+plt.ylabel(PI_y_label, fontsize=15) 
 plt.show()

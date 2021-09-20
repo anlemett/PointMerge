@@ -7,7 +7,7 @@ import time
 start_time = time.time()
 
 year = '2019'
-airport_icao = "EIDW"
+airport_icao = "LOWW"
 PIs_type = "vertical"
 #PIs_type = "horizontal"
 

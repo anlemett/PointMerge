@@ -8,7 +8,7 @@ start_time = time.time()
 
 year = '2019'
 month = '10'
-airport_icao = "ESSA"
+airport_icao = "LOWW"
 
 if airport_icao == "EIDW":
     from constants_EIDW import *
