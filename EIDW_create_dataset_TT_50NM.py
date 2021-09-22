@@ -85,7 +85,7 @@ vertical_PIs_by_flight_rwy28L_df = pd.concat(frames)
 df = vertical_PIs_by_hour_rwy28L_df
 
 df = df[df['number_of_flights_by_end']>0]
-p1 = df["50NM_time_mean"].quantile(0.7) # 17.42 min, 2609 flights out of 7741 flights
+p1 = df["50NM_time_mean"].quantile(0.7) # 16.98 min, 2468 flights out of 7748 flights
 
 df = df.loc[(df['50NM_time_mean'] > p1)]
 print(p1)
@@ -105,7 +105,7 @@ flight_ids_list = df_inner['flight_id'].to_list()
 
 print(len(flight_ids_list))
 
-exit(0)
+#exit(0)
 
 dataset_df = pd.DataFrame()
 count = 0

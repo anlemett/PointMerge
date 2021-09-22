@@ -3,6 +3,10 @@ import os
 
 import pyproj
 
+from shapely.geometry import Point
+from shapely.geometry import LineString
+
+
 from datetime import datetime
 import calendar
 
@@ -10,9 +14,9 @@ import time
 start_time = time.time()
 
 year = '2019'
-airport_icao = "EIDW"
+airport_icao = "ESSA"
 
-from constants_EIDW import *
+from constants_ESSA import *
 
 #months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '12', '12']
 months = ['10']
@@ -22,11 +26,44 @@ DATA_DIR = os.path.join(DATA_DIR, year)
 
 geod = pyproj.Geod(ellps='WGS84')   # to determine runways via azimuth
 #fwd_azimuth, back_azimuth, distance = geod.inv(lat1, long1, lat2, long2)
-rwy10R_azimuth, rwy28L_azimuth, distance = geod.inv(rwy10R_lat[0], rwy10R_lon[0], rwy10R_lat[1], rwy10R_lon[1])
-rwy16_azimuth, rwy34_azimuth, distance = geod.inv(rwy16_lat[0], rwy16_lon[0], rwy16_lat[1], rwy16_lon[1])
 
-print(rwy10R_azimuth, rwy28L_azimuth, rwy16_azimuth, rwy34_azimuth)
-# ~ -3.15 176.85 -54.07 125.93
+rwy08_azimuth, rwy26_azimuth, distance = geod.inv(rwy08_lat[0], rwy08_lon[0], rwy08_lat[1], rwy08_lon[1])
+rwy01L_azimuth, rwy19R_azimuth, distance = geod.inv(rwy01L_lat[0], rwy01L_lon[0], rwy01L_lat[1], rwy01L_lon[1])
+rwy01R_azimuth, rwy19L_azimuth, distance = geod.inv(rwy01R_lat[0], rwy01R_lon[0], rwy01R_lat[1], rwy01R_lon[1])
+
+#print(rwy08_azimuth, rwy26_azimuth, rwy01L_azimuth, rwy19R_azimuth, rwy01R_azimuth, rwy19L_azimuth)
+# ~ 7 -173 70 -110 70 -110
+
+#point1 = [59.537, 17.9]
+#point2 = [59.766, 17.98]
+#fwd_azimuth, back_azimuth, distance = geod.inv(point1[0], point1[1], point2[0], point2[1])
+#print(fwd_azimuth, back_azimuth)
+
+#Point1 = Point(point1[1], point1[0])
+#Point2 = Point(point2[1], point2[0])
+
+a = (rwy01L_lon[0], rwy01L_lat[0])
+b = (rwy01L_lon[1], rwy01L_lat[1])
+# distance between runways - 2 km
+offset_length = 0.018 #approximate 1 km in longitude degrees, when latitude is 60N
+
+ab = LineString([a, b])
+cd = ab.parallel_offset(offset_length)
+Point1 = cd.boundary[0]
+Point2 = cd.boundary[1]
+print(Point1, Point2)
+
+
+# Check the sign of the determninant of 
+# | x2-x1  x3-x1 |
+# | y2-y1  y3-y1 |
+# It will be positive for points on one side, and negative on the other (0 on the line)
+def is_left(Point3):
+    if ((Point2.x - Point1.x)*(Point3.y - Point1.y) - (Point2.y - Point1.y)*(Point3.x - Point1.x)) < 0:
+        return True
+    else:
+        return False
+
 
 def get_all_states(csv_input_file):
 
@@ -86,16 +123,22 @@ def determine_runways(month, week):
                                                     trajectory_point_last[0],
                                                     trajectory_point_last[1])
 
-        # ~ -3.15 176.85 -54.07 125.93
-        if (trajectory_azimuth > -24) and (trajectory_azimuth <= 61):
-            runway = '10R'
-        elif (trajectory_azimuth > -136) and (trajectory_azimuth <= -24):
-            runway = '16'
-        elif (trajectory_azimuth > 61) and (trajectory_azimuth <= 152):
-            runway = '34'
-        else: # 28L
-            runway = '28L'
-        #print(runway)
+        if (trajectory_azimuth > -50) and (trajectory_azimuth < 40):
+            runway = '08'
+        elif ((trajectory_azimuth > -180) and (trajectory_azimuth < -140)) or ((trajectory_azimuth > 130) and (trajectory_azimuth < 180)):
+            runway = '26'
+        elif (trajectory_azimuth > 40) and (trajectory_azimuth < 130): #01L or 01R
+            Point3 = Point(trajectory_point_last[1], trajectory_point_last[0])
+            if is_left(Point3):
+                runway = '01L'
+            else:
+                runway = '01R'
+        else: # 19L or 19R
+            Point3 = Point(trajectory_point_last[1], trajectory_point_last[0])
+            if is_left(Point3):
+                runway = '19R'
+            else:
+                runway = '19L'
         
         runways_df = runways_df.append({'flight_id': flight_id, 'date': date_str,
                                         'hour': end_hour_str,
@@ -120,10 +163,12 @@ def create_runways_files(month, week):
     runways_df = pd.read_csv(full_input_filename2, sep=' ')
     runways_df.set_index(['flight_id'], inplace=True)
 
-    rwy10_df = pd.DataFrame()
-    rwy28_df = pd.DataFrame()
-    rwy16_df = pd.DataFrame()
-    rwy34_df = pd.DataFrame()
+    rwy01L_df = pd.DataFrame()
+    rwy19R_df = pd.DataFrame()
+    rwy01R_df = pd.DataFrame()
+    rwy19L_df = pd.DataFrame()
+    rwy08_df = pd.DataFrame()
+    rwy26_df = pd.DataFrame()
     
     count = 0
     for flight_id, flight_id_group in states_df.groupby(level='flightId'):
@@ -132,14 +177,18 @@ def create_runways_files(month, week):
 
         runway = runways_df.loc[flight_id][['runway']].values[0]
     
-        if runway == "10R":
-            rwy10_df = rwy10_df.append(flight_id_group)
-        elif runway == "28L":
-            rwy28_df = rwy28_df.append(flight_id_group)
-        elif runway == "16":
-            rwy16_df = rwy16_df.append(flight_id_group)
+        if runway == "01L":
+            rwy01L_df = rwy01L_df.append(flight_id_group)
+        elif runway == "19R":
+            rwy19R_df = rwy19R_df.append(flight_id_group)
+        elif runway == "01R":
+            rwy01R_df = rwy01R_df.append(flight_id_group)
+        elif runway == "19L":
+            rwy19L_df = rwy19L_df.append(flight_id_group)
+        elif runway == "08":
+            rwy08_df = rwy08_df.append(flight_id_group)
         else:
-            rwy34_df = rwy34_df.append(flight_id_group)
+            rwy26_df = rwy26_df.append(flight_id_group)
 
     DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_50NM_" + year)
     DATA_OUTPUT_DIR = os.path.join(DATA_OUTPUT_DIR, "osn_"+ airport_icao + "_states_50NM_" + year + "_" + month + "_week" + str(week) + "_by_runways")
@@ -148,11 +197,13 @@ def create_runways_files(month, week):
     output_filename = "osn_"+ airport_icao + "_states_50NM_" + year + '_' + month + "_week" + str(week)
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
 
-    rwy10_df.to_csv(full_output_filename + "_rwy10R.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    rwy28_df.to_csv(full_output_filename + "_rwy28L.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    rwy16_df.to_csv(full_output_filename + "_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    rwy34_df.to_csv(full_output_filename + "_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-
+    rwy01L_df.to_csv(full_output_filename + "_rwy01L.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy19R_df.to_csv(full_output_filename + "_rwy19R.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy01R_df.to_csv(full_output_filename + "_rwy01R.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy19L_df.to_csv(full_output_filename + "_rwy19L.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy08_df.to_csv(full_output_filename + "_rwy08.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy26_df.to_csv(full_output_filename + "_rwy26.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+  
     
 def main():
     
