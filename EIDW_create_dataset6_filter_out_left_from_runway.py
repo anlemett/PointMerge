@@ -13,16 +13,16 @@ airport_icao = "EIDW"
 
 from constants_EIDW import *
 
-DATA_DIR = os.path.join("data", airport_icao)
+DATA_DIR = os.path.join("data", airport_icao + "_50NM_rwy_center")
 DATA_DIR = os.path.join(DATA_DIR, year)
 DATASET_DATA_DIR = os.path.join(DATA_DIR, "Dataset")
 
 states_df = pd.DataFrame()
 
-filename = "dataset2.csv"
+filename = "EIDW_dataset_TT_50NM_rwy.csv"
 states_df = pd.read_csv(os.path.join(DATASET_DATA_DIR, filename), sep=' ',
-                    names = ['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'endDate'],
-                    dtype={'flightId':str, 'sequence':int, 'timestamp':int, 'lat':float, 'lon':float, 'rawAltitude':float, 'altitude':float, 'velocity':float, 'endDate':str})
+                    names = ['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'beginDate', 'endDate'],
+                    dtype={'flightId':str, 'sequence':int, 'timestamp':int, 'lat':float, 'lon':float, 'rawAltitude':float, 'altitude':float, 'velocity':float, 'beginDate':str, 'endDate':str})
 states_df.set_index(['flightId', 'sequence'], inplace=True)
 
 number_of_flights = len(states_df.groupby(level='flightId'))
@@ -46,7 +46,7 @@ def check_square_contains_point(point):
 for flight_id, flight_df in states_df.groupby(level='flightId'):
     
     count = count + 1
-    print(number_of_flights, count)
+    #print(number_of_flights, count)
     
     drop = False
     
@@ -56,8 +56,9 @@ for flight_id, flight_df in states_df.groupby(level='flightId'):
         if (check_square_contains_point(Point(lon, lat))):
             drop = True
             break
-    if drop:  
+    if drop:
+        print(flight_id)
         states_df = states_df.drop(flight_id)
     
 filename = "dataset3.csv"
-states_df.to_csv(os.path.join(DATASET_DATA_DIR, filename), sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+#states_df.to_csv(os.path.join(DATASET_DATA_DIR, filename), sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)

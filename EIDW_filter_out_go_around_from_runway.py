@@ -40,7 +40,7 @@ def check_circle_contains_point(circle_center, circle_radius, point):
 
 #def filter_out(month, week):
 def filter_out():
-    DATA_DIR = os.path.join("data", airport_icao)
+    DATA_DIR = os.path.join("data", airport_icao + "_50NM")
     DATA_DIR = os.path.join(DATA_DIR, year)
     DATA_INPUT_DIR = os.path.join(DATA_DIR, "Dataset")
     #DATA_INPUT_DIR = os.path.join(DATA_DIR, "osn_"+ airport_icao + "_states_TMA_" + year)
@@ -53,11 +53,13 @@ def filter_out():
 
 
     #filename = "osn_"+ airport_icao + "_states_TMA_" + year + "_" + month + "_week" + str(week) + "_rwy28"
-    filename = "EIDW_dataset_TT.csv"
+    #filename = "EIDW_dataset_TT.csv"
+    filename = "EIDW_dataset_TT_50NM_2.csv"
 
     states_df = pd.read_csv(os.path.join(DATA_INPUT_DIR, filename), sep=' ',
-                    names = ['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'endDate'],
-                    dtype={'flightId':str, 'sequence':int, 'timestamp':int, 'lat':float, 'lon':float, 'rawAltitude':float, 'altitude':float, 'velocity':float, 'endDate':str})
+                    #names = ['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'endDate'],
+                    names = ['flightId', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'beginDate', 'endDate'],
+                    dtype={'flightId':str, 'sequence':int, 'timestamp':int, 'lat':float, 'lon':float, 'rawAltitude':float, 'altitude':float, 'velocity':float, 'beginDate':str, 'endDate':str})
     states_df.set_index(['flightId', 'sequence'], inplace=True)
 
     number_of_flights = len(states_df.groupby(level='flightId'))
@@ -96,11 +98,11 @@ def filter_out():
     number_of_flights = len(states_df.groupby(level='flightId'))
     print(number_of_flights)
     
-    filename = "EIDW_dataset_TT2.csv"
+    filename = "EIDW_dataset_TT2_3.csv"
     states_df.to_csv(os.path.join(DATA_OUTPUT_DIR, filename), sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
 
     flight_id_set = set(flight_id_list)
-    filename = "EIDW_dataset_TT_remove_flight_ids.txt"
+    filename = "EIDW_dataset_TT_remove_flight_ids_2.txt"
     with open(os.path.join(DATA_OUTPUT_DIR, filename), 'w') as filehandle:
         for listitem in flight_id_set:
             filehandle.write('%s\n' % listitem)

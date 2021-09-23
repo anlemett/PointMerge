@@ -13,34 +13,39 @@ from constants_EIDW import *
 
 months = ['10']
 
+#DATA_DIR = os.path.join("data", airport_icao + "_50NM_rwy_center")
 DATA_DIR = os.path.join("data", airport_icao + "_50NM")
 DATA_DIR = os.path.join(DATA_DIR, year)
 DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "Dataset")
+STATES_DIR = os.path.join(DATA_DIR, "osn_EIDW_states_50NM_2019")
 
-
-filename = "data/EIDW_50NM/2019/osn_EIDW_states_50NM_2019/osn_EIDW_states_50NM_2019_10_week1_by_runways/osn_EIDW_states_50NM_2019_10_week1_rwy28L.csv"
+week1_states_dir = os.path.join(STATES_DIR, "osn_EIDW_states_50NM_2019_10_week1_by_runways")
+filename = os.path.join(week1_states_dir, "osn_EIDW_states_50NM_2019_10_week1_rwy28L.csv")
 week1_rwy28L_df = pd.read_csv(filename, sep=' ',
                             names = ['flight_id', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'beginDate', 'endDate'])
 week1_rwy28L_df.set_index(['flight_id', 'sequence'], inplace = True)
-num_flights1 = len(week1_rwy28L_df.groupby(level='flight_id'))
 
-filename = "data/EIDW_50NM/2019/osn_EIDW_states_50NM_2019/osn_EIDW_states_50NM_2019_10_week2_by_runways/osn_EIDW_states_50NM_2019_10_week2_rwy28L.csv"
+
+week2_states_dir = os.path.join(STATES_DIR, "osn_EIDW_states_50NM_2019_10_week2_by_runways")
+filename = os.path.join(week2_states_dir, "osn_EIDW_states_50NM_2019_10_week2_rwy28L.csv")
 week2_rwy28L_df = pd.read_csv(filename, sep=' ',
                             names = ['flight_id', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'beginDate', 'endDate'])
 week2_rwy28L_df.set_index(['flight_id', 'sequence'], inplace = True)
-num_flights2 = len(week2_rwy28L_df.groupby(level='flight_id'))
 
-filename = "data/EIDW_50NM/2019/osn_EIDW_states_50NM_2019/osn_EIDW_states_50NM_2019_10_week3_by_runways/osn_EIDW_states_50NM_2019_10_week3_rwy28L.csv"
+
+week3_states_dir = os.path.join(STATES_DIR, "osn_EIDW_states_50NM_2019_10_week3_by_runways")
+filename = os.path.join(week3_states_dir, "osn_EIDW_states_50NM_2019_10_week3_rwy28L.csv")
 week3_rwy28L_df = pd.read_csv(filename, sep=' ',
                             names = ['flight_id', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'beginDate', 'endDate'])
 week3_rwy28L_df.set_index(['flight_id', 'sequence'], inplace = True)
-num_flights3 = len(week3_rwy28L_df.groupby(level='flight_id'))
 
-filename = "data/EIDW_50NM/2019/osn_EIDW_states_50NM_2019/osn_EIDW_states_50NM_2019_10_week4_by_runways/osn_EIDW_states_50NM_2019_10_week4_rwy28L.csv"
+
+week4_states_dir = os.path.join(STATES_DIR, "osn_EIDW_states_50NM_2019_10_week4_by_runways")
+filename = os.path.join(week4_states_dir, "osn_EIDW_states_50NM_2019_10_week4_rwy28L.csv")
 week4_rwy28L_df = pd.read_csv(filename, sep=' ',
                             names = ['flight_id', 'sequence', 'timestamp', 'lat', 'lon', 'rawAltitude', 'altitude', 'velocity', 'beginDate', 'endDate'])
 week4_rwy28L_df.set_index(['flight_id', 'sequence'], inplace = True)
-num_flights4 = len(week4_rwy28L_df.groupby(level='flight_id'))
+
 
 frames = [week1_rwy28L_df, week2_rwy28L_df, week3_rwy28L_df, week4_rwy28L_df]
 rwy28L_df = pd.concat(frames)
@@ -48,32 +53,34 @@ num_flights = len(rwy28L_df.groupby(level='flight_id'))
 print(num_flights)
 
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_hour_2019_10_week1_rwy28L.csv"
+PIs_DIR = os.path.join(DATA_DIR, "PIs")
+
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_hour_2019_10_week1_rwy28L.csv")
 vertical_PIs_by_hour_week1_rwy28L_df = pd.read_csv(filename, sep=' ')
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_hour_2019_10_week2_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_hour_2019_10_week2_rwy28L.csv")
 vertical_PIs_by_hour_week2_rwy28L_df = pd.read_csv(filename, sep=' ')
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_hour_2019_10_week3_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_hour_2019_10_week3_rwy28L.csv")
 vertical_PIs_by_hour_week3_rwy28L_df = pd.read_csv(filename, sep=' ')
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_hour_2019_10_week4_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_hour_2019_10_week4_rwy28L.csv")
 vertical_PIs_by_hour_week4_rwy28L_df = pd.read_csv(filename, sep=' ')
 
 frames = [vertical_PIs_by_hour_week1_rwy28L_df, vertical_PIs_by_hour_week2_rwy28L_df, vertical_PIs_by_hour_week3_rwy28L_df, vertical_PIs_by_hour_week4_rwy28L_df]
 vertical_PIs_by_hour_rwy28L_df = pd.concat(frames)
 
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_flight_2019_10_week1_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_flight_2019_10_week1_rwy28L.csv")
 vertical_PIs_by_flight_week1_rwy28L_df = pd.read_csv(filename, sep=' ')
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_flight_2019_10_week2_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_flight_2019_10_week2_rwy28L.csv")
 vertical_PIs_by_flight_week2_rwy28L_df = pd.read_csv(filename, sep=' ')
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_flight_2019_10_week3_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_flight_2019_10_week3_rwy28L.csv")
 vertical_PIs_by_flight_week3_rwy28L_df = pd.read_csv(filename, sep=' ')
 
-filename = "data/EIDW_50NM/2019/PIs/PIs_vertical_by_flight_2019_10_week4_rwy28L.csv"
+filename = os.path.join(PIs_DIR, "PIs_vertical_by_flight_2019_10_week4_rwy28L.csv")
 vertical_PIs_by_flight_week4_rwy28L_df = pd.read_csv(filename, sep=' ')
 
 frames = [vertical_PIs_by_flight_week1_rwy28L_df, vertical_PIs_by_flight_week2_rwy28L_df, vertical_PIs_by_flight_week3_rwy28L_df, vertical_PIs_by_flight_week4_rwy28L_df]
@@ -118,7 +125,7 @@ for flight_id, flight_id_group in rwy28L_df.groupby(level='flight_id'):
     if flight_id in flight_ids_list:
         dataset_df = dataset_df.append(flight_id_group)
     
-filename = "EIDW_dataset_TT_50NM.csv"
+filename = "EIDW_dataset_TT_50NM_1.csv"
 dataset_df.to_csv(os.path.join(DATA_OUTPUT_DIR, filename), sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     
 print("--- %s minutes ---" % ((time.time() - start_time)/60))
