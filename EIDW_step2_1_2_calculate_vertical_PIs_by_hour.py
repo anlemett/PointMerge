@@ -192,7 +192,7 @@ vfe_by_hour_df.to_csv(os.path.join(DATA_DIR, output_filename), sep=' ', encoding
 
 flight_id_set = set(flight_id_list)
 
-filename = "week" + str(week) + "_flight_ids.txt"
+filename = "week" + str(week) + "_TMA_more_than_25_flights_per_hour_flight_ids.txt"
 with open(os.path.join(DATASET_DATA_DIR, filename), 'w') as filehandle:
     for listitem in flight_id_set:
         filehandle.write('%s\n' % listitem)

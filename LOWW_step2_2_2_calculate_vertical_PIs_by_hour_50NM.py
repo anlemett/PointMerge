@@ -14,7 +14,8 @@ from constants_LOWW import *
 #months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '12', '12']
 months = ['10']
 
-DATA_DIR = os.path.join("data", airport_icao + "_50NM")
+#DATA_DIR = os.path.join("data", airport_icao + "_50NM")
+DATA_DIR = os.path.join("data", airport_icao + "_50NM_rwy")
 DATA_DIR = os.path.join(DATA_DIR, year)
 DATASET_DATA_DIR = os.path.join(DATA_DIR, "Dataset")
 if not os.path.exists(DATASET_DATA_DIR):
@@ -24,8 +25,8 @@ DATA_DIR = os.path.join(DATA_DIR, "PIs")
 
 
 def calculate_vfe_hour(month, week):
-    input_filename = "PIs_vertical_by_flight_2019_" + str(month) + "_week" + str(week) + "_rwy_16.csv"
-    output_filename = "PIs_vertical_by_hour_2019_" + str(month) + "_week" + str(week) + "_rwy_16.csv"
+    input_filename = "PIs_vertical_by_flight_2019_" + str(month) + "_week" + str(week) + "_rwy16.csv"
+    output_filename = "PIs_vertical_by_hour_2019_" + str(month) + "_week" + str(week) + "_rwy16.csv"
 
 
     #flight_id date hour number_of_levels time_on_levels time_on_levels_percent distance_on_levels distance_on_levels_percent

@@ -13,8 +13,8 @@ from constants_EIDW import *
 
 months = ['10']
 
-#DATA_DIR = os.path.join("data", airport_icao + "_50NM_rwy_center")
-DATA_DIR = os.path.join("data", airport_icao + "_50NM")
+DATA_DIR = os.path.join("data", airport_icao + "_50NM_rwy")
+#DATA_DIR = os.path.join("data", airport_icao + "_50NM")
 DATA_DIR = os.path.join(DATA_DIR, year)
 DATA_OUTPUT_DIR = os.path.join(DATA_DIR, "Dataset")
 STATES_DIR = os.path.join(DATA_DIR, "osn_EIDW_states_50NM_2019")
@@ -92,7 +92,8 @@ vertical_PIs_by_flight_rwy28L_df = pd.concat(frames)
 df = vertical_PIs_by_hour_rwy28L_df
 
 df = df[df['number_of_flights_by_end']>0]
-p1 = df["50NM_time_mean"].quantile(0.7) # 16.98 min, 2468 flights out of 7748 flights
+p1 = df["50NM_time_mean"].quantile(0.7) # 16.98 min, 2468 flights out of 7748 flights for 50NM
+                                        # 17.42 min, 2609 flights out of 7741 flights for 50NM_rwy
 
 df = df.loc[(df['50NM_time_mean'] > p1)]
 print(p1)
@@ -125,7 +126,7 @@ for flight_id, flight_id_group in rwy28L_df.groupby(level='flight_id'):
     if flight_id in flight_ids_list:
         dataset_df = dataset_df.append(flight_id_group)
     
-filename = "EIDW_dataset_TT_50NM_1.csv"
+filename = "EIDW_50NM_dataset_TT_1.csv"
 dataset_df.to_csv(os.path.join(DATA_OUTPUT_DIR, filename), sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     
 print("--- %s minutes ---" % ((time.time() - start_time)/60))

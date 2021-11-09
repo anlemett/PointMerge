@@ -17,7 +17,8 @@ from constants_LOWW import *
 #months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '12', '12']
 months = ['10']
 
-DATA_DIR = os.path.join("data", airport_icao + "_50NM")
+#DATA_DIR = os.path.join("data", airport_icao + "_50NM")
+DATA_DIR = os.path.join("data", airport_icao + "_50NM_rwy")
 DATA_DIR = os.path.join(DATA_DIR, year)
 
 geod = pyproj.Geod(ellps='WGS84')   # to determine runways via azimuth
@@ -159,10 +160,10 @@ def create_runways_files(month, week):
     output_filename = "osn_"+ airport_icao + "_states_50NM_" + year + '_' + month + "_week" + str(week)
     full_output_filename = os.path.join(DATA_OUTPUT_DIR, output_filename)
 
-    rwy_16_df.to_csv(full_output_filename + "_rwy_16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    rwy_34_df.to_csv(full_output_filename + "_rwy_34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    rwy_11_df.to_csv(full_output_filename + "_rwy_11.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
-    rwy_29_df.to_csv(full_output_filename + "_rwy_29.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy_16_df.to_csv(full_output_filename + "_rwy16.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy_34_df.to_csv(full_output_filename + "_rwy34.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy_11_df.to_csv(full_output_filename + "_rwy11.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
+    rwy_29_df.to_csv(full_output_filename + "_rwy29.csv", sep=' ', encoding='utf-8', float_format='%.3f', index = True, header = False)
     
     
 def main():
